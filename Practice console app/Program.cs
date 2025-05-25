@@ -10,13 +10,13 @@
             while (!exits)
             {
                 Console.Clear();
-                Console.WriteLine("============ Welcome to our bank=======");
+                Console.WriteLine("==== Welcome to Console Bank ====");
                 Console.WriteLine("1. Check Balance");
                 Console.WriteLine("2. Deposit");
                 Console.WriteLine("3. Withdraw");
                 Console.WriteLine("4. Exit");
                 Console.Write("Choose an option (1-4): ");
-                string choice=Console.ReadLine();
+                string choice = Console.ReadLine();
 
                 switch (choice)
                 {
