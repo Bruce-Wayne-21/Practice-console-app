@@ -120,14 +120,8 @@
                 return null;
             }
         }
-
-        public class newfuction
-        {
-            public void classname()
-            {
-
-            }
-        }
         
     }
+
+
 }
