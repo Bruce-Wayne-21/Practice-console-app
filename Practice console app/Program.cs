@@ -8,12 +8,13 @@
 
             int[] nums = { 1, 2, 3, 4, 5, 6, 7, 8 };
             int target = 10;
-            PrintTwoSumResult(nums, target);
+            //PrintTwoSumResult(nums, target);
 
+            PrintName();
             decimal balance = 0;
             bool exits = false;
 
-            while (!exits)
+            while (exits)
             {
                 Console.Clear();
                 Console.WriteLine("==== Welcome to Console Bank ====");
@@ -120,6 +121,17 @@
                 return null;
             }
         }
-        
+
+        static void PrintName()
+        {
+            book b = new book(1);
+            b.Title = "harry potter";
+            Console.Write(b.Title);
+        }
+
+
+
     }
+
+
 }
