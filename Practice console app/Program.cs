@@ -2,7 +2,7 @@
 {
     internal class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
 
 
@@ -122,12 +122,13 @@
             }
         }
 
-        static void PrintName()
+        public static void PrintName()
         {
             book b = new book(1);
             b.Title = "harry potter";
             Console.Write(b.Title);
         }
+
 
 
 
