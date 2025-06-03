@@ -13,7 +13,7 @@
             PrintName();
             decimal balance = 0;
             bool exits = false;
-
+            PrintBooks();
             while (exits)
             {
                 Console.Clear();
@@ -129,7 +129,50 @@
             Console.Write(b.Title);
         }
 
+        class newname
+        {
+            public int num { get; set; }
+            public string name { get; set; }
+            public newname()
+            {
 
+            }
+
+        }
+        public static void main()
+        {
+            newname n = new newname();
+            n.num = 1;
+            n.name = "new name";
+            Console.WriteLine(n.name);
+
+        }
+
+        class books
+        {
+            public string Title { get; set; }
+            public string Author { get; set; }
+            public int bookid { get; set; }
+
+            public books(string title, string author, int bookid)
+            {
+                Title = title;
+                Author = author;
+                this.bookid = bookid;
+            }
+        }
+
+        public static void PrintBooks()
+        {
+            books b1 = new books("harry potter", "J.K. Rowling", 1);
+            books b2 = new books("The Hobbit", "J.R.R. Tolkien", 2);
+            books b3 = new books("1984", "George Orwell", 3);
+            List<books> bookList = new List<books> { b1, b2, b3 };
+            foreach (var book in bookList)
+            {
+                Console.WriteLine($"Title: {book.Title}, Author: {book.Author}, Book ID: {book.bookid}");
+            }
+        }
 
 
     }
