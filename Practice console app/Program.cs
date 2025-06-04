@@ -1,4 +1,6 @@
-﻿namespace Practice_console_app
+﻿using System.Runtime.CompilerServices;
+
+namespace Practice_console_app
 {
     internal class Program
     {
@@ -9,11 +11,12 @@
             int[] nums = { 1, 2, 3, 4, 5, 6, 7, 8 };
             int target = 10;
             //PrintTwoSumResult(nums, target);
-
-            PrintName();
+            newbook b = new newbook();
+            b.Display();
+            //PrintName();
             decimal balance = 0;
             bool exits = false;
-            PrintBooks();
+            //PrintBooks();
             while (exits)
             {
                 Console.Clear();
@@ -174,7 +177,17 @@
             }
         }
 
-
+        class newbook
+        {
+            public  void Display()
+            {
+                object obj;
+                obj = new int[] {1,2, 3, 4, 5};
+                Console.WriteLine(string.Join(", ", (int[])obj)); 
+                Console.WriteLine(obj);
+                Console.WriteLine(obj.GetType());
+            }
+        }
     }
 
 
