@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Net;
+using System.Runtime.CompilerServices;
 
 namespace Practice_console_app
 {
@@ -8,79 +9,20 @@ namespace Practice_console_app
         {
 
 
-            int[] nums = { 1, 2, 3, 4, 5, 6, 7, 8 };
-            int target = 10;
-            //PrintTwoSumResult(nums, target);
-            newbook b = new newbook();
-            b.Display();
-            //PrintName();
-            decimal balance = 0;
-            bool exits = false;
-            //PrintBooks();
-            while (exits)
-            {
-                Console.Clear();
-                Console.WriteLine("==== Welcome to Console Bank ====");
-                Console.WriteLine("1. Check Balance");
-                Console.WriteLine("2. Deposit");
-                Console.WriteLine("3. Withdraw");
-                Console.WriteLine("4. Exit");
-                Console.Write("Choose an option (1-4): ");
-                string choice = Console.ReadLine();
-
-                switch (choice)
-                {
-                    case "1":
-                        Console.WriteLine($"your current balance is : {balance}");
-                        Pause();
-
-                        break;
-                    case "2":
-                        Console.WriteLine("enter the amount deposit :$");
-                        if (decimal.TryParse(Console.ReadLine(), out decimal deposit) && deposit > 0)
-                        {
-                            balance += deposit;
-                            Console.WriteLine($"deposites: ${deposit}");
-                        }
-                        else
-                        {
-                            Console.WriteLine("invalid amount");
-                        }
-                        Pause();
-                        break;
-                    case "3":
-                        Console.WriteLine("enter the amount to widrow:");
-                        if (decimal.TryParse(Console.ReadLine(), out decimal withdraw) && withdraw > 0)
-                        {
-                            if (withdraw <= balance)
-                            {
-                                balance -= withdraw;
-                                Console.WriteLine($"withdraw : ${withdraw}");
-                            }
-                            else
-                            {
-                                Console.WriteLine("insufficiant funds");
-                            }
-                        }
-                        else
-                        {
-                            Console.WriteLine("Invalid amoount");
-                        }
-                        Pause();
-                        break;
-
-                    case "4":
-                        exits = true;
-                        Console.WriteLine("Thank you for using Console Bank!");
-
-                        break;
-                    default:
-                        Console.WriteLine("Invalid choice. Please select 1-4.");
-                        Pause();
-                        break;
-
-                }
-            }
+            //int[] nums = { 1, 2, 3, 4, 5, 6, 7, 8 };
+            //int target = 10;
+            ////PrintTwoSumResult(nums, target);
+            //newbook b = new newbook();
+            //b.Display();
+            ////PrintName();
+            //decimal balance = 0;
+            //bool exits = false;
+            ////PrintBooks();
+            //while (exits)
+            int y =sumnumber();
+            Console.WriteLine(y);
+            int x = addnumers(1,2,3,4,5,6,6,2,3,4,5);
+            Console.WriteLine(x);
         }
         static void Pause()
         {
@@ -188,7 +130,52 @@ namespace Practice_console_app
                 Console.WriteLine(obj.GetType());
             }
         }
+
+        public static int sumnumber()
+        {
+            List<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
+            int total = 0;
+            for (int i = 0; i < numbers.Count; i++)
+            {
+                total += numbers[i];
+            }
+         
+            int n = 0;
+            foreach (var item in numbers)
+            {
+                n += item;
+            }
+            int result = n;
+            numbers.Add(n); 
+            int sum =  numbers.Sum();
+            //Console.WriteLine(sum);
+            return sum;
+
+        }
+
+        public static int addnumers(params int[] numbers)
+        {
+            HashSet<int> uniqueNumbers = new HashSet<int>(numbers);
+            int total= 0;
+            foreach (var item in uniqueNumbers)
+            {
+                total += item;
+
+            }
+            for (int i = 1; i < uniqueNumbers.Count; i++)
+            {
+                total -= uniqueNumbers.ElementAt(i);
+                
+            }
+            return total;
+
+        }
+
+        
+
+
     }
+
 
 
 }
