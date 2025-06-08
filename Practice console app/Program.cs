@@ -1,15 +1,17 @@
-﻿using System.Net;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Net;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
 namespace Practice_console_app
 {
     internal class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
 
 
-            //int[] nums = { 1, 2, 3, 4, 5, 6, 7, 8 };
+            int[] nums = { 1, 2, 3, 4, 5, 6, 7, 8,24,25,26 };
             //int target = 10;
             ////PrintTwoSumResult(nums, target);
             //newbook b = new newbook();
@@ -19,10 +21,17 @@ namespace Practice_console_app
             //bool exits = false;
             ////PrintBooks();
             //while (exits)
-            int y =sumnumber();
-            Console.WriteLine(y);
+            //int y =sumnumber();
+            //Console.WriteLine(y);
             int x = addnumers(1,2,3,4,5,6,6,2,3,4,5);
-            Console.WriteLine(x);
+            //Console.WriteLine(x);
+
+            //int[] result = RemoveDuplicates(1, 2, 3, 4, 5, 6, 8, 2, 3, 4);
+            //Console.WriteLine(string.Join(", ", result));
+            //string result2 =await checnkthevalue(nums);
+            //Console.WriteLine(result2);
+            StarPattern();
+
         }
         static void Pause()
         {
@@ -164,14 +173,85 @@ namespace Practice_console_app
             }
             for (int i = 1; i < uniqueNumbers.Count; i++)
             {
-                total -= uniqueNumbers.ElementAt(i);
+                total *= uniqueNumbers.ElementAt(i);
                 
             }
             return total;
 
         }
 
-        
+
+        public static int[] RemoveDuplicates(params int[] nums)
+        {
+            if (nums.Length == 0)
+            {
+                return new int[0];
+            }
+
+            Array.Sort(nums); 
+
+            int i = 0;
+            for (int j = 1; j < nums.Length; j++)
+            {
+                if (nums[i] != nums[j])
+                {
+                    i++;
+                    nums[i] = nums[j];
+                }
+            }
+            int[] unique = new int[i + 1];
+            Array.Copy(nums, unique, i + 1);
+            return unique;
+        }
+
+        public static async Task<string> checnkthevalue(int[] nums)
+        {
+            try
+            {
+                foreach (var item in nums)
+                {
+                    if (item != null)
+                    {
+                        switch (item)
+                        {
+                            case 24:
+                                Console.WriteLine("24 is present in the array.");
+                                break;
+                            case 25:
+                                Console.WriteLine("25 is present in the array.");
+                                break;
+                            case 26:
+                                Console.WriteLine("26 is present in the array.");
+                                break;
+
+                            default:
+                                Console.WriteLine($"{item} is not present in the array.");
+                                break;
+                        }
+                    }
+                }
+                return "Check completed successfully.";
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return "An error occurred during the check.";
+            }
+        }
+      
+        private static void StarPattern()
+        {
+            for (int row = 1; row <= 8; ++row)
+            {
+                for (int col = 1; col <= row; ++col)
+                {
+                    Console.Write("*");
+                }
+
+                Console.WriteLine();
+            }
+            Console.ReadLine();
+        }
 
 
     }
