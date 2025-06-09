@@ -11,7 +11,7 @@ namespace Practice_console_app
         {
 
 
-            int[] nums = { 1, 2, 3, 4, 5, 6, 7, 8,24,25,26 };
+            int[] nums = { 1, 2, 3, 4, 5, 6, 7, 8, 24, 25, 26 };
             //int target = 10;
             ////PrintTwoSumResult(nums, target);
             //newbook b = new newbook();
@@ -23,7 +23,7 @@ namespace Practice_console_app
             //while (exits)
             //int y =sumnumber();
             //Console.WriteLine(y);
-            int x = addnumers(1,2,3,4,5,6,6,2,3,4,5);
+            int x = addnumers(1, 2, 3, 4, 5, 6, 6, 2, 3, 4, 5);
             //Console.WriteLine(x);
 
             //int[] result = RemoveDuplicates(1, 2, 3, 4, 5, 6, 8, 2, 3, 4);
@@ -31,6 +31,7 @@ namespace Practice_console_app
             //string result2 =await checnkthevalue(nums);
             //Console.WriteLine(result2);
             StarPattern();
+            printforeach();
 
         }
         static void Pause()
@@ -38,7 +39,7 @@ namespace Practice_console_app
             Console.WriteLine("Press Enter to continue...");
             Console.ReadLine();
         }
-        
+
 
         static void PrintTwoSumResult(int[] nums, int target)
         {
@@ -59,12 +60,12 @@ namespace Practice_console_app
         // this method it through the array and check the sum of target. eg: 4+2 =6. it returns the [1,3] this is the answer
         public class solution
         {
-            public int[] twosum(int[] nums,int target)
+            public int[] twosum(int[] nums, int target)
             {
                 int n = nums.Length;
-                for( int i = 0; i < n; i++ )
+                for (int i = 0; i < n; i++)
                 {
-                    for(int j = 0; j < n; j++)
+                    for (int j = 0; j < n; j++)
                     {
                         if (nums[i] + nums[j] == target)
                         {
@@ -130,11 +131,11 @@ namespace Practice_console_app
 
         class newbook
         {
-            public  void Display()
+            public void Display()
             {
                 object obj;
-                obj = new int[] {1,2, 3, 4, 5};
-                Console.WriteLine(string.Join(", ", (int[])obj)); 
+                obj = new int[] { 1, 2, 3, 4, 5 };
+                Console.WriteLine(string.Join(", ", (int[])obj));
                 Console.WriteLine(obj);
                 Console.WriteLine(obj.GetType());
             }
@@ -148,15 +149,15 @@ namespace Practice_console_app
             {
                 total += numbers[i];
             }
-         
+
             int n = 0;
             foreach (var item in numbers)
             {
                 n += item;
             }
             int result = n;
-            numbers.Add(n); 
-            int sum =  numbers.Sum();
+            numbers.Add(n);
+            int sum = numbers.Sum();
             //Console.WriteLine(sum);
             return sum;
 
@@ -165,7 +166,7 @@ namespace Practice_console_app
         public static int addnumers(params int[] numbers)
         {
             HashSet<int> uniqueNumbers = new HashSet<int>(numbers);
-            int total= 0;
+            int total = 0;
             foreach (var item in uniqueNumbers)
             {
                 total += item;
@@ -174,7 +175,7 @@ namespace Practice_console_app
             for (int i = 1; i < uniqueNumbers.Count; i++)
             {
                 total *= uniqueNumbers.ElementAt(i);
-                
+
             }
             return total;
 
@@ -188,7 +189,7 @@ namespace Practice_console_app
                 return new int[0];
             }
 
-            Array.Sort(nums); 
+            Array.Sort(nums);
 
             int i = 0;
             for (int j = 1; j < nums.Length; j++)
@@ -238,7 +239,7 @@ namespace Practice_console_app
                 return "An error occurred during the check.";
             }
         }
-      
+
         private static void StarPattern()
         {
             for (int row = 1; row <= 8; ++row)
@@ -253,9 +254,22 @@ namespace Practice_console_app
             Console.ReadLine();
         }
 
-
+        public static void printforeach()
+        {
+            string[] names = { "Alice", "Bob", "Charlie" };
+            int maleCount = 0, femaleCount = 0;
+            foreach (string name in names)
+            {
+                if (name == "Alice")
+                {
+                    maleCount++;
+                }
+                if (name == "Bob")
+                {
+                    femaleCount++;
+                }
+            }
+            Console.WriteLine($"{maleCount} :malecount {femaleCount}:female count ");
+        }
     }
-
-
-
 }
