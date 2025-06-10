@@ -1,9 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Net;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
-
-namespace Practice_console_app
+﻿namespace Practice_console_app
 {
     internal class Program
     {
@@ -11,7 +6,7 @@ namespace Practice_console_app
         {
 
 
-            int[] nums = { 1, 2, 3, 4, 5, 6, 7, 8,24,25,26 };
+            int[] nums = { 1, 2, 3, 4, 5, 6, 7, 8, 24, 25, 26 };
             //int target = 10;
             ////PrintTwoSumResult(nums, target);
             //newbook b = new newbook();
@@ -23,14 +18,18 @@ namespace Practice_console_app
             //while (exits)
             //int y =sumnumber();
             //Console.WriteLine(y);
-            int x = addnumers(1,2,3,4,5,6,6,2,3,4,5);
+            int x = addnumers(1, 2, 3, 4, 5, 6, 6, 2, 3, 4, 5);
             //Console.WriteLine(x);
 
             //int[] result = RemoveDuplicates(1, 2, 3, 4, 5, 6, 8, 2, 3, 4);
             //Console.WriteLine(string.Join(", ", result));
             //string result2 =await checnkthevalue(nums);
             //Console.WriteLine(result2);
-            StarPattern();
+            //StarPattern();
+            //printforeach();
+            //LinQuery();
+            //printbook();
+            listview();
 
         }
         static void Pause()
@@ -38,7 +37,7 @@ namespace Practice_console_app
             Console.WriteLine("Press Enter to continue...");
             Console.ReadLine();
         }
-        
+
 
         static void PrintTwoSumResult(int[] nums, int target)
         {
@@ -59,12 +58,12 @@ namespace Practice_console_app
         // this method it through the array and check the sum of target. eg: 4+2 =6. it returns the [1,3] this is the answer
         public class solution
         {
-            public int[] twosum(int[] nums,int target)
+            public int[] twosum(int[] nums, int target)
             {
                 int n = nums.Length;
-                for( int i = 0; i < n; i++ )
+                for (int i = 0; i < n; i++)
                 {
-                    for(int j = 0; j < n; j++)
+                    for (int j = 0; j < n; j++)
                     {
                         if (nums[i] + nums[j] == target)
                         {
@@ -130,11 +129,11 @@ namespace Practice_console_app
 
         class newbook
         {
-            public  void Display()
+            public void Display()
             {
                 object obj;
-                obj = new int[] {1,2, 3, 4, 5};
-                Console.WriteLine(string.Join(", ", (int[])obj)); 
+                obj = new int[] { 1, 2, 3, 4, 5 };
+                Console.WriteLine(string.Join(", ", (int[])obj));
                 Console.WriteLine(obj);
                 Console.WriteLine(obj.GetType());
             }
@@ -148,15 +147,15 @@ namespace Practice_console_app
             {
                 total += numbers[i];
             }
-         
+
             int n = 0;
             foreach (var item in numbers)
             {
                 n += item;
             }
             int result = n;
-            numbers.Add(n); 
-            int sum =  numbers.Sum();
+            numbers.Add(n);
+            int sum = numbers.Sum();
             //Console.WriteLine(sum);
             return sum;
 
@@ -165,7 +164,7 @@ namespace Practice_console_app
         public static int addnumers(params int[] numbers)
         {
             HashSet<int> uniqueNumbers = new HashSet<int>(numbers);
-            int total= 0;
+            int total = 0;
             foreach (var item in uniqueNumbers)
             {
                 total += item;
@@ -174,7 +173,7 @@ namespace Practice_console_app
             for (int i = 1; i < uniqueNumbers.Count; i++)
             {
                 total *= uniqueNumbers.ElementAt(i);
-                
+
             }
             return total;
 
@@ -188,7 +187,7 @@ namespace Practice_console_app
                 return new int[0];
             }
 
-            Array.Sort(nums); 
+            Array.Sort(nums);
 
             int i = 0;
             for (int j = 1; j < nums.Length; j++)
@@ -238,7 +237,7 @@ namespace Practice_console_app
                 return "An error occurred during the check.";
             }
         }
-      
+
         private static void StarPattern()
         {
             for (int row = 1; row <= 8; ++row)
@@ -253,9 +252,84 @@ namespace Practice_console_app
             Console.ReadLine();
         }
 
+        public static void printforeach()
+        {
+            string[] names = { "Alice", "Bob", "Charlie" };
+            int maleCount = 0, femaleCount = 0;
+            foreach (string name in names)
+            {
+                if (name == "Alice")
+                {
+                    maleCount++;
+                }
+                if (name == "Bob")
+                {
+                    femaleCount++;
+                }
+            }
+            Console.WriteLine($"{maleCount} :malecount {femaleCount}:female count ");
+        }
 
+        public static void LinQuery()
+        {
+            List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            var number = (from n in numbers
+                         where n % 2 == 0
+                         select n).ToList();
+            foreach (var item in number)
+            {
+                Console.WriteLine(item);
+            }
+            IEnumerable<int> num = numbers.Where(n => n % 2 == 0).OrderBy(n => n);
+
+        }
+
+        public class baseclass
+        {
+           
+            
+           public string Author { get; set; }
+            
+        }
+        public class sjailan:baseclass
+        {
+            public sjailan(string Title,int id)
+            {
+               this.title = Title;
+                this.bookId = id;
+            }
+            public int bookId { get; set; }
+            private string title { get; set; }
+            public string Title
+            {
+                get { return title; }
+                set { title = value; }
+            }
+
+        }
+
+
+        public static void printbook()
+        {
+            sjailan s = new sjailan("sajlam",2);
+            s.bookId += 1;
+            s.Title += "C# Programming";
+            s.Author = "Sajilan";
+            Console.WriteLine($"Book ID:  {s.bookId} '\n', Title: {s.Title}'\n':author {s.Author} ");
+        }
+
+        static void listview()
+        {
+            sjailan b = new sjailan("Sajilan", 2);
+            sjailan b1 = new sjailan("saji", 2);
+            sjailan b2 = new sjailan("saji1", 2);
+            sjailan b3 = new sjailan("ss", 2);
+            List<sjailan> books = new List<sjailan> { b, b1, b2, b3 };
+            int count = books.Count;
+            for (int i = 0; i < count; i++)
+            {
+                Console.WriteLine($"Book ID: {books[i].bookId}, Title: {books[i].Title}, Author: {books[i].Author}");
+            }
+        }
     }
-
-
-
 }
