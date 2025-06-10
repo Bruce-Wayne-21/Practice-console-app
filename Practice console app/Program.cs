@@ -1,9 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Net;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
-
-namespace Practice_console_app
+﻿namespace Practice_console_app
 {
     internal class Program
     {
@@ -30,8 +25,11 @@ namespace Practice_console_app
             //Console.WriteLine(string.Join(", ", result));
             //string result2 =await checnkthevalue(nums);
             //Console.WriteLine(result2);
-            StarPattern();
-            printforeach();
+            //StarPattern();
+            //printforeach();
+            //LinQuery();
+            //printbook();
+            listview();
 
         }
         static void Pause()
@@ -270,6 +268,68 @@ namespace Practice_console_app
                 }
             }
             Console.WriteLine($"{maleCount} :malecount {femaleCount}:female count ");
+        }
+
+        public static void LinQuery()
+        {
+            List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            var number = (from n in numbers
+                         where n % 2 == 0
+                         select n).ToList();
+            foreach (var item in number)
+            {
+                Console.WriteLine(item);
+            }
+            IEnumerable<int> num = numbers.Where(n => n % 2 == 0).OrderBy(n => n);
+
+        }
+
+        public class baseclass
+        {
+           
+            
+           public string Author { get; set; }
+            
+        }
+        public class sjailan:baseclass
+        {
+            public sjailan(string Title,int id)
+            {
+               this.title = Title;
+                this.bookId = id;
+            }
+            public int bookId { get; set; }
+            private string title { get; set; }
+            public string Title
+            {
+                get { return title; }
+                set { title = value; }
+            }
+
+        }
+
+
+        public static void printbook()
+        {
+            sjailan s = new sjailan("sajlam",2);
+            s.bookId += 1;
+            s.Title += "C# Programming";
+            s.Author = "Sajilan";
+            Console.WriteLine($"Book ID:  {s.bookId} '\n', Title: {s.Title}'\n':author {s.Author} ");
+        }
+
+        static void listview()
+        {
+            sjailan b = new sjailan("Sajilan", 2);
+            sjailan b1 = new sjailan("saji", 2);
+            sjailan b2 = new sjailan("saji1", 2);
+            sjailan b3 = new sjailan("ss", 2);
+            List<sjailan> books = new List<sjailan> { b, b1, b2, b3 };
+            int count = books.Count;
+            for (int i = 0; i < count; i++)
+            {
+                Console.WriteLine($"Book ID: {books[i].bookId}, Title: {books[i].Title}, Author: {books[i].Author}");
+            }
         }
     }
 }
