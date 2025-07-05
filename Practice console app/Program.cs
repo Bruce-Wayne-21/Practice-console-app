@@ -1,4 +1,6 @@
-﻿namespace Practice_console_app
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace Practice_console_app
 {
     internal class Program
     {
@@ -9,6 +11,10 @@
             int[] nums = { 1, 2, 3, 4, 5, 6, 7, 8 };
             int target = 10;
             PrintTwoSumResult(nums, target);
+            var obj = new Program();    
+         
+            string name= obj.GetName(); 
+           
 
             decimal balance = 0;
             bool exits = false;
@@ -83,7 +89,7 @@
             Console.WriteLine("Press Enter to continue...");
             Console.ReadLine();
         }
-        
+
 
         static void PrintTwoSumResult(int[] nums, int target)
         {
@@ -104,12 +110,12 @@
         // this method it through the array and check the sum of target. eg: 4+2 =6. it returns the [1,3] this is the answer
         public class solution
         {
-            public int[] twosum(int[] nums,int target)
+            public int[] twosum(int[] nums, int target)
             {
                 int n = nums.Length;
-                for( int i = 0; i < n; i++ )
+                for (int i = 0; i < n; i++)
                 {
-                    for(int j = 0; j < n; j++)
+                    for (int j = 0; j < n; j++)
                     {
                         if (nums[i] + nums[j] == target)
                         {
@@ -120,6 +126,20 @@
                 return null;
             }
         }
-        
+
+        public string GetName()
+        {
+            return "Practice Console App";
+        }
+        public static string GetVersion()
+        {
+            return "1.0.0";
+
+        }
+        public static string GetAuthor()
+        {
+            return "Your Name"; // Replace with your name
+        }
+       
     }
 }
