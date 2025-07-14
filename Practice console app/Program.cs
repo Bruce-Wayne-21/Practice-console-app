@@ -1,36 +1,88 @@
-﻿namespace Practice_console_app
+using System.Diagnostics.CodeAnalysis;
+
+namespace Practice_console_app
 {
     internal class Program
     {
-        public static async Task Main(string[] args)
+        static void Main(string[] args)
         {
 
 
-            int[] nums = { 1, 2, 3, 4, 5, 6, 7, 8, 24, 25, 26 };
-            //int target = 10;
-            ////PrintTwoSumResult(nums, target);
-            //newbook b = new newbook();
-            //b.Display();
-            ////PrintName();
-            //decimal balance = 0;
-            //bool exits = false;
-            ////PrintBooks();
-            //while (exits)
-            //int y =sumnumber();
-            //Console.WriteLine(y);
-            int x = addnumers(1, 2, 3, 4, 5, 6, 6, 2, 3, 4, 5);
-            //Console.WriteLine(x);
+            int[] nums = { 1, 2, 3, 4, 5, 6, 7, 8 };
+            int target = 10;
+            PrintTwoSumResult(nums, target);
+            var obj = new Program();    
+         
+            string name= obj.GetName(); 
+           
 
-            //int[] result = RemoveDuplicates(1, 2, 3, 4, 5, 6, 8, 2, 3, 4);
-            //Console.WriteLine(string.Join(", ", result));
-            //string result2 =await checnkthevalue(nums);
-            //Console.WriteLine(result2);
-            //StarPattern();
-            //printforeach();
-            //LinQuery();
-            //printbook();
-            listview();
+            decimal balance = 0;
+            bool exits = false;
 
+            while (!exits)
+            {
+                Console.Clear();
+                Console.WriteLine("==== Welcome to Console Bank ====");
+                Console.WriteLine("1. Check Balance");
+                Console.WriteLine("2. Deposit");
+                Console.WriteLine("3. Withdraw");
+                Console.WriteLine("4. Exit");
+                Console.Write("Choose an option (1-4): ");
+                string choice = Console.ReadLine();
+
+                switch (choice)
+                {
+                    case "1":
+                        Console.WriteLine($"your current balance is : {balance}");
+                        Pause();
+
+                        break;
+                    case "2":
+                        Console.WriteLine("enter the amount deposit :$");
+                        if (decimal.TryParse(Console.ReadLine(), out decimal deposit) && deposit > 0)
+                        {
+                            balance += deposit;
+                            Console.WriteLine($"deposites: ${deposit}");
+                        }
+                        else
+                        {
+                            Console.WriteLine("invalid amount");
+                        }
+                        Pause();
+                        break;
+                    case "3":
+                        Console.WriteLine("enter the amount to widrow:");
+                        if (decimal.TryParse(Console.ReadLine(), out decimal withdraw) && withdraw > 0)
+                        {
+                            if (withdraw <= balance)
+                            {
+                                balance -= withdraw;
+                                Console.WriteLine($"withdraw : ${withdraw}");
+                            }
+                            else
+                            {
+                                Console.WriteLine("insufficiant funds");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid amoount");
+                        }
+                        Pause();
+                        break;
+
+                    case "4":
+                        exits = true;
+                        Console.WriteLine("Thank you for using Console Bank!");
+
+                        break;
+                    default:
+                        Console.WriteLine("Invalid choice. Please select 1-4.");
+                        Pause();
+                        break;
+
+                }
+            }
         }
         static void Pause()
         {
@@ -75,261 +127,19 @@
             }
         }
 
-        public static void PrintName()
+        public string GetName()
         {
-            book b = new book(1);
-            b.Title = "harry potter";
-            Console.Write(b.Title);
+            return "Practice Console App";
         }
-
-        class newname
+        public static string GetVersion()
         {
-            public int num { get; set; }
-            public string name { get; set; }
-            public newname()
-            {
-
-            }
+            return "1.0.0";
 
         }
-        public static void main()
+        public static string GetAuthor()
         {
-            newname n = new newname();
-            n.num = 1;
-            n.name = "new name";
-            Console.WriteLine(n.name);
-
+            return "Your Name"; // Replace with your name
         }
-
-        class books
-        {
-            public string Title { get; set; }
-            public string Author { get; set; }
-            public int bookid { get; set; }
-
-            public books(string title, string author, int bookid)
-            {
-                Title = title;
-                Author = author;
-                this.bookid = bookid;
-            }
-        }
-
-        public static void PrintBooks()
-        {
-            books b1 = new books("harry potter", "J.K. Rowling", 1);
-            books b2 = new books("The Hobbit", "J.R.R. Tolkien", 2);
-            books b3 = new books("1984", "George Orwell", 3);
-            List<books> bookList = new List<books> { b1, b2, b3 };
-            foreach (var book in bookList)
-            {
-                Console.WriteLine($"Title: {book.Title}, Author: {book.Author}, Book ID: {book.bookid}");
-            }
-        }
-
-        class newbook
-        {
-            public void Display()
-            {
-                object obj;
-                obj = new int[] { 1, 2, 3, 4, 5 };
-                Console.WriteLine(string.Join(", ", (int[])obj));
-                Console.WriteLine(obj);
-                Console.WriteLine(obj.GetType());
-            }
-        }
-
-        public static int sumnumber()
-        {
-            List<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
-            int total = 0;
-            for (int i = 0; i < numbers.Count; i++)
-            {
-                total += numbers[i];
-            }
-
-            int n = 0;
-            foreach (var item in numbers)
-            {
-                n += item;
-            }
-            int result = n;
-            numbers.Add(n);
-            int sum = numbers.Sum();
-            //Console.WriteLine(sum);
-            return sum;
-
-        }
-
-        public static int addnumers(params int[] numbers)
-        {
-            HashSet<int> uniqueNumbers = new HashSet<int>(numbers);
-            int total = 0;
-            foreach (var item in uniqueNumbers)
-            {
-                total += item;
-
-            }
-            for (int i = 1; i < uniqueNumbers.Count; i++)
-            {
-                total *= uniqueNumbers.ElementAt(i);
-
-            }
-            return total;
-
-        }
-
-
-        public static int[] RemoveDuplicates(params int[] nums)
-        {
-            if (nums.Length == 0)
-            {
-                return new int[0];
-            }
-
-            Array.Sort(nums);
-
-            int i = 0;
-            for (int j = 1; j < nums.Length; j++)
-            {
-                if (nums[i] != nums[j])
-                {
-                    i++;
-                    nums[i] = nums[j];
-                }
-            }
-            int[] unique = new int[i + 1];
-            Array.Copy(nums, unique, i + 1);
-            return unique;
-        }
-
-        public static async Task<string> checnkthevalue(int[] nums)
-        {
-            try
-            {
-                foreach (var item in nums)
-                {
-                    if (item != null)
-                    {
-                        switch (item)
-                        {
-                            case 24:
-                                Console.WriteLine("24 is present in the array.");
-                                break;
-                            case 25:
-                                Console.WriteLine("25 is present in the array.");
-                                break;
-                            case 26:
-                                Console.WriteLine("26 is present in the array.");
-                                break;
-
-                            default:
-                                Console.WriteLine($"{item} is not present in the array.");
-                                break;
-                        }
-                    }
-                }
-                return "Check completed successfully.";
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                return "An error occurred during the check.";
-            }
-        }
-
-        private static void StarPattern()
-        {
-            for (int row = 1; row <= 8; ++row)
-            {
-                for (int col = 1; col <= row; ++col)
-                {
-                    Console.Write("*");
-                }
-
-                Console.WriteLine();
-            }
-            Console.ReadLine();
-        }
-
-        public static void printforeach()
-        {
-            string[] names = { "Alice", "Bob", "Charlie" };
-            int maleCount = 0, femaleCount = 0;
-            foreach (string name in names)
-            {
-                if (name == "Alice")
-                {
-                    maleCount++;
-                }
-                if (name == "Bob")
-                {
-                    femaleCount++;
-                }
-            }
-            Console.WriteLine($"{maleCount} :malecount {femaleCount}:female count ");
-        }
-
-        public static void LinQuery()
-        {
-            List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            var number = (from n in numbers
-                         where n % 2 == 0
-                         select n).ToList();
-            foreach (var item in number)
-            {
-                Console.WriteLine(item);
-            }
-            IEnumerable<int> num = numbers.Where(n => n % 2 == 0).OrderBy(n => n);
-
-        }
-
-        public class baseclass
-        {
-           
-            
-           public string Author { get; set; }
-            
-        }
-        public class sjailan:baseclass
-        {
-            public sjailan(string Title,int id)
-            {
-               this.title = Title;
-                this.bookId = id;
-            }
-            public int bookId { get; set; }
-            private string title { get; set; }
-            public string Title
-            {
-                get { return title; }
-                set { title = value; }
-            }
-
-        }
-
-
-        public static void printbook()
-        {
-            sjailan s = new sjailan("sajlam",2);
-            s.bookId += 1;
-            s.Title += "C# Programming";
-            s.Author = "Sajilan";
-            Console.WriteLine($"Book ID:  {s.bookId} '\n', Title: {s.Title}'\n':author {s.Author} ");
-        }
-
-        static void listview()
-        {
-            sjailan b = new sjailan("Sajilan", 2);
-            sjailan b1 = new sjailan("saji", 2);
-            sjailan b2 = new sjailan("saji1", 2);
-            sjailan b3 = new sjailan("ss", 2);
-            List<sjailan> books = new List<sjailan> { b, b1, b2, b3 };
-            int count = books.Count;
-            for (int i = 0; i < count; i++)
-            {
-                Console.WriteLine($"Book ID: {books[i].bookId}, Title: {books[i].Title}, Author: {books[i].Author}");
-            }
-        }
+       
     }
 }
