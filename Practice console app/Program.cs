@@ -1,4 +1,4 @@
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 
 namespace Practice_console_app
 {
@@ -8,13 +8,15 @@ namespace Practice_console_app
         {
 
 
-            int[] nums = { 1, 2, 3, 4, 5, 6, 7, 8 };
-            int target = 10;
-            PrintTwoSumResult(nums, target);
-            var obj = new Program();    
+            //int[] nums = { 1, 2, 3, 4, 5, 6, 7, 8 };
+            //int target = 10;
+            //PrintTwoSumResult(nums, target);
+            //var obj = new Program();    
          
-            string name= obj.GetName(); 
-           
+            //string name= obj.GetName(); 
+
+            var addtwosum = new Solution();
+            ListNode list = addtwosum.AddTwoNumbers(new ListNode(2, new ListNode(4, new ListNode(3))), new ListNode(5, new ListNode(6, new ListNode(4))));
 
             decimal balance = 0;
             bool exits = false;
@@ -140,6 +142,48 @@ namespace Practice_console_app
         {
             return "Your Name"; // Replace with your name
         }
-       
+
+
+
+        public class ListNode
+        {
+            public int val;
+            public ListNode next;
+            public ListNode(int val = 0, ListNode next = null)
+            {
+                this.val = val;
+                this.next = next;
+            }
+        }
+
+
+        public class Solution
+        {
+            public ListNode AddTwoNumbers(ListNode l1, ListNode l2)
+            {
+                ListNode dummyHead = new ListNode(0);
+                ListNode curr = dummyHead;
+                int carry = 0;
+                while (l1 != null || l2 != null || carry != 0)
+                {
+                    int x = (l1 != null) ? l1.val : 0;
+                    int y = (l2 != null) ? l2.val : 0;
+                    int sum = carry + x + y;
+                    carry = sum / 10;
+                    curr.next = new ListNode(sum % 10);
+                    curr = curr.next;
+                    if (l1 != null)
+                        l1 = l1.next;
+                    if (l2 != null)
+                        l2 = l2.next;
+                }
+
+                return dummyHead.next;
+            }
+        }
+        
+        
+
+
     }
 }
