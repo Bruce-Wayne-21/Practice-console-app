@@ -1,4 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Net.Http.Headers;
+using System.Runtime.CompilerServices;
 
 namespace Practice_console_app
 {
@@ -181,8 +183,38 @@ namespace Practice_console_app
                 return dummyHead.next;
             }
         }
-        
-        
+
+        public class animal
+        {
+            private string ProtectedMessage { get; set; }
+            protected void DisplayMessage()
+            {
+                ProtectedMessage = "This is a protected message from the base class.";
+                Console.WriteLine(ProtectedMessage);
+            }
+        }
+
+        public class dog : animal
+        {
+           protected void ShowMessage()
+           {
+                DisplayMessage(); // This will work because DisplayMessage is protected
+                
+           }
+        }
+
+        public class  nattuDog :dog
+        {
+           
+            public void ShowMessagew()
+            {
+                ShowMessage(); // This will work because ShowMessage is public
+            }
+        }   
+            
+
+
+
 
 
     }
