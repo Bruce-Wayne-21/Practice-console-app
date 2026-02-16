@@ -14,79 +14,89 @@ namespace Practice_console_app
             //int target = 10;
             //PrintTwoSumResult(nums, target);
             //var obj = new Program();    
-         
-            //string name= obj.GetName(); 
 
-            var addtwosum = new Solution();
-            ListNode list = addtwosum.AddTwoNumbers(new ListNode(2, new ListNode(4, new ListNode(3))), new ListNode(5, new ListNode(6, new ListNode(4))));
+            //string name= obj.GetName(); 
+            string[] array = ["flower", "flow", "flight"];
+
+            //var solution = new LongestCommonPrefix();
+            //string str = solution.LongestCommonPrefixe(array);
+            //Console.WriteLine(str);
+            //Console.ReadLine();
+
+            
+            var solution= new Solution_4();
+                string s = "({[]})";
+            bool isValid = solution.IsValid(s);
+            Console.WriteLine($"Is the string \"{s}\" valid? {isValid}");
+
 
             decimal balance = 0;
             bool exits = false;
 
-            while (!exits)
-            {
-                Console.Clear();
-                Console.WriteLine("==== Welcome to Console Bank ====");
-                Console.WriteLine("1. Check Balance");
-                Console.WriteLine("2. Deposit");
-                Console.WriteLine("3. Withdraw");
-                Console.WriteLine("4. Exit");
-                Console.Write("Choose an option (1-4): ");
-                string choice = Console.ReadLine();
+            //while (!exits)
+            //{
+            //    Console.Clear();
+            //    Console.WriteLine("==== Welcome to Console Bank ====");
+            //    Console.WriteLine("1. Check Balance");
+            //    Console.WriteLine("2. Deposit");
+            //    Console.WriteLine("3. Withdraw");
+            //    Console.WriteLine("4. Exit");
+            //    Console.Write("Choose an option (1-4): ");
+            //    string choice = Console.ReadLine();
 
-                switch (choice)
-                {
-                    case "1":
-                        Console.WriteLine($"your current balance is : {balance}");
-                        Pause();
+            //    switch (choice)
+            //    {
+            //        case "1":
+            //            Console.WriteLine($"your current balance is : {balance}");
+            //            Pause();
 
-                        break;
-                    case "2":
-                        Console.WriteLine("enter the amount deposit :$");
-                        if (decimal.TryParse(Console.ReadLine(), out decimal deposit) && deposit > 0)
-                        {
-                            balance += deposit;
-                            Console.WriteLine($"deposites: ${deposit}");
-                        }
-                        else
-                        {
-                            Console.WriteLine("invalid amount");
-                        }
-                        Pause();
-                        break;
-                    case "3":
-                        Console.WriteLine("enter the amount to widrow:");
-                        if (decimal.TryParse(Console.ReadLine(), out decimal withdraw) && withdraw > 0)
-                        {
-                            if (withdraw <= balance)
-                            {
-                                balance -= withdraw;
-                                Console.WriteLine($"withdraw : ${withdraw}");
-                            }
-                            else
-                            {
-                                Console.WriteLine("insufficiant funds");
-                            }
-                        }
-                        else
-                        {
-                            Console.WriteLine("Invalid amoount");
-                        }
-                        Pause();
-                        break;
+            //            break;
+            //        case "2":
+            //            Console.WriteLine("enter the amount deposit :$");
+            //            if (decimal.TryParse(Console.ReadLine(), out decimal deposit) && deposit > 0)
+            //            {
+            //                balance += deposit;
+            //                Console.WriteLine($"deposites: ${deposit}");
+            //            }
+            //            else
+            //            {
+            //                Console.WriteLine("invalid amount");
+            //            }
+            //            Pause();
+            //            break;
+            //        case "3":
+            //            Console.WriteLine("enter the amount to widrow:");
+            //            if (decimal.TryParse(Console.ReadLine(), out decimal withdraw) && withdraw > 0)
+            //            {
+            //                if (withdraw <= balance)
+            //                {
+            //                    balance -= withdraw;
+            //                    Console.WriteLine($"withdraw : ${withdraw}");
+            //                }
+            //                else
+            //                {
+            //                    Console.WriteLine("insufficiant funds");
+            //                }
+            //            }
+            //            else
+            //            {
+            //                Console.WriteLine("Invalid amoount");
+            //            }
+            //            Pause();
+            //            break;
 
-                    case "4":
-                        exits = true;
-                        Console.WriteLine("Thank you for using Console Bank!");
+            //        case "4":
+            //            exits = true;
+            //            Console.WriteLine("Thank you for using Console Bank!");
 
-                        break;
-                    default:
-                        Console.WriteLine("Invalid choice. Please select 1-4.");
-                        Pause();
-                        break;
+            //            break;
+            //        default:
+            //            Console.WriteLine("Invalid choice. Please select 1-4.");
+            //            Pause();
+            //            break;
 
-                }
-            }
+            //    }
+            //}
         }
         static void Pause()
         {
@@ -210,11 +220,83 @@ namespace Practice_console_app
             {
                 ShowMessage(); // This will work because ShowMessage is public
             }
-        }   
-            
+        }
+
+        public class LongestCommonPrefix
+        {
+            public string LongestCommonPrefixq(string[] strs)
+            {
+                try
+                {
+                    string prefix1 = strs[0];
+                    for(int i = 1; i< strs.Length; i++)
+                    {
+                        while (strs[i].IndexOf(prefix1) != 0)
+                        {
+                            prefix1 = prefix1.Substring(0, prefix1.Length - 1);
+                            if(string.IsNullOrEmpty(prefix1))
+                            {
+                                return "";
+                            }
+                        }
+
+                    }
+                    return prefix1;
+                    
+                }
+                catch (Exception ex)
+                {
+                    return "";
+                }
+
+            }
+        }
 
 
+        public class Solution_4
+        {
+            public bool IsValid(string s)
+            {
+                Stack<char> stack = new Stack<char>();
 
+                foreach (char c in s)
+                {
+                    // If it's an opening bracket, push to stack
+                    if (c == '(' || c == '[' || c == '{')
+                    {
+                        stack.Push(c);
+                    }
+                    // If it's a closing bracket
+                    else
+                    {
+                        // Stack is empty, no matching opening bracket
+                        if (stack.Count == 0)
+                        {
+                            return false;
+                        }
+
+                        char top = stack.Pop();
+
+                        // Check if the brackets match
+                        if (c == ')' && top != '(')
+                        {
+                            return false;
+                        }
+                        if (c == ']' && top != '[')
+                        {
+                            return false;
+                        }
+                        if (c == '}' && top != '{')
+                        {
+                            return false;
+                        }
+                    }
+                }
+
+                // Stack should be empty if all brackets are matched
+                return stack.Count == 0;
+            }
+        }
 
 
     }
