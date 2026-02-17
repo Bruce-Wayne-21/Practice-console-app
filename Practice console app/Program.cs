@@ -23,80 +23,33 @@ namespace Practice_console_app
             //Console.WriteLine(str);
             //Console.ReadLine();
 
-            
-            var solution= new Solution_4();
-                string s = "({[]})";
-            bool isValid = solution.IsValid(s);
-            Console.WriteLine($"Is the string \"{s}\" valid? {isValid}");
+
+            //var solution= new Solution_4();
+            //    string s = "({[]})";
+            //bool isValid = solution.IsValid(s);
+            //Console.WriteLine($"Is the string \"{s}\" valid? {isValid}");
 
 
-            decimal balance = 0;
-            bool exits = false;
+            //decimal balance = 0;
+            //bool exits = false;
 
-            //while (!exits)
-            //{
-            //    Console.Clear();
-            //    Console.WriteLine("==== Welcome to Console Bank ====");
-            //    Console.WriteLine("1. Check Balance");
-            //    Console.WriteLine("2. Deposit");
-            //    Console.WriteLine("3. Withdraw");
-            //    Console.WriteLine("4. Exit");
-            //    Console.Write("Choose an option (1-4): ");
-            //    string choice = Console.ReadLine();
+            ListNode l1 = new ListNode(1);
+            l1.next = new ListNode(2);
+            l1.next.next = new ListNode(4);
 
-            //    switch (choice)
-            //    {
-            //        case "1":
-            //            Console.WriteLine($"your current balance is : {balance}");
-            //            Pause();
+            // 2. Create the second list: 1 -> 3 -> 4
+            ListNode l2 = new ListNode(1);
+            l2.next = new ListNode(3);
+            l2.next.next = new ListNode(4);
 
-            //            break;
-            //        case "2":
-            //            Console.WriteLine("enter the amount deposit :$");
-            //            if (decimal.TryParse(Console.ReadLine(), out decimal deposit) && deposit > 0)
-            //            {
-            //                balance += deposit;
-            //                Console.WriteLine($"deposites: ${deposit}");
-            //            }
-            //            else
-            //            {
-            //                Console.WriteLine("invalid amount");
-            //            }
-            //            Pause();
-            //            break;
-            //        case "3":
-            //            Console.WriteLine("enter the amount to widrow:");
-            //            if (decimal.TryParse(Console.ReadLine(), out decimal withdraw) && withdraw > 0)
-            //            {
-            //                if (withdraw <= balance)
-            //                {
-            //                    balance -= withdraw;
-            //                    Console.WriteLine($"withdraw : ${withdraw}");
-            //                }
-            //                else
-            //                {
-            //                    Console.WriteLine("insufficiant funds");
-            //                }
-            //            }
-            //            else
-            //            {
-            //                Console.WriteLine("Invalid amoount");
-            //            }
-            //            Pause();
-            //            break;
+            var solution = new Solution_5();
 
-            //        case "4":
-            //            exits = true;
-            //            Console.WriteLine("Thank you for using Console Bank!");
+            ListNode mergedHead = solution.MergeTwoLists(l1, l2);
+            Console.WriteLine($"Merged List:{mergedHead}");
 
-            //            break;
-            //        default:
-            //            Console.WriteLine("Invalid choice. Please select 1-4.");
-            //            Pause();
-            //            break;
 
-            //    }
-            //}
+
+
         }
         static void Pause()
         {
@@ -298,6 +251,56 @@ namespace Practice_console_app
             }
         }
 
+
+        #region Merge Two Sorted Lists
+
+        public class Solution_5
+        {
+            public ListNode MergeTwoLists(ListNode list1, ListNode list2)
+            {
+                // 1. Create a "dummy" node to serve as the start of our merged list
+                ListNode dummy = new ListNode(-1);
+
+                // 2. Use a "current" pointer to build the new list
+                ListNode current = dummy;
+
+                // 3. Traverse both lists as long as neither is empty
+                while (list1 != null && list2 != null)
+                {
+
+                    // Compare the values of the two nodes
+                    if (list1.val <= list2.val)
+                    {
+                        current.next = list1;  // Attach list1's node
+                        list1 = list1.next;    // Move list1 forward
+                    }
+                    else
+                    {
+                        current.next = list2;  // Attach list2's node
+                        list2 = list2.next;    // Move list2 forward
+                    }
+
+                    // Move our building pointer forward
+                    current = current.next;
+                }
+
+                // 4. If one list runs out before the other, simply attach the rest of the remaining list
+                if (list1 != null)
+                {
+                    current.next = list1;
+                }
+                else if (list2 != null)
+                {
+                    current.next = list2;
+                }
+
+                // 5. The actual merged list starts AFTER the dummy node
+                return dummy.next;
+            }
+        }
+
+
+        #endregion
 
     }
 }
